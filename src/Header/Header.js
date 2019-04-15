@@ -1,13 +1,13 @@
 import React from 'react';
 import './Header.css';
 
-const footer = (props) => {
+const header = (props) => {
     return (
         <div>
-            <img src={require('./Assets/Tree.png')}></img>
+            <img className="logo" src={props.logo}></img>
             <h1>I am Groot!</h1>
         </div>
     )
 }
 
-export default footer;
+export default header;

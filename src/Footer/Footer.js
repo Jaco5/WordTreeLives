@@ -4,7 +4,7 @@ import './Footer.css';
 const footer = (props) => {
     return (
         <div className="footer-div">
-            <p>Copyright 2019 - Jacob Artz</p>
+            <p>Copyright {props.year} - {props.contributors}</p>
         </div>
     )
 }

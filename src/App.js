@@ -32,19 +32,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />        
-        <div>
-          <UserInput name={"DOAJ Search String:"} />
-          <UserInput name={"Set the Node:"} />
-          <DisplayTree />
+        <div className="app-container">
+          <Header logo={require('./Assets/Tree.png')} />
+          <div>
+            <UserInput name={"DOAJ Search String:"} />
+            <UserInput name={"Set the Node:"} />
+            <DisplayTree />
+          </div>
+          <div>
+            <UserInput name={"Exact Phrase to Locate:"} />
+            <DisplayArticle />
+          </div>
+          <Footer year={"2019"} contributors={"Jacob Artz"} />
         </div>
-        <div>
-          <UserInput name={"Exact Phrase to Locate:"} />
-          <DisplayArticle />
-        </div>
-        <Footer />
-
-        
       </div>
     );
   }
