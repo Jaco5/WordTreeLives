@@ -32,11 +32,15 @@ class App extends Component {
       <div className="App">
         <img src={require('./Assets/Tree.png')}></img>
         <h1>I am groot!</h1>
-        <UserInput />
-        <UserInput />
-        <UserInput />
-        <DisplayArticle />
-        <DisplayTree />
+        <div>
+          <UserInput name={"DOAJ Search String:"} />
+          <UserInput name={"Set the Node:"} />
+          <DisplayTree />
+        </div>
+        <div>
+          <UserInput name={"Exact Phrase to Locate:"} />
+          <DisplayArticle />
+        </div>
 
         
       </div>

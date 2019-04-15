@@ -1,13 +1,18 @@
 import React from 'react';
 
-import  './UserInput.css';
+import './UserInput.css';
 
 const userInput = (props) => {
     return (
-        <div className="input">
-            <input type="text" onChange={null} value={null} />
-        </div>
+        <form classname="user-input">
+            <label>
+                <p>{props.name}</p>
+                <input type="text" name="name" />
+            </label>
+            <input type="submit" value="Submit" />
+        </form>
     )
 };
 
 export default userInput;
+
