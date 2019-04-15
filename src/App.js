@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import UserInput from "./UserInput/UserInput";
 import DisplayArticle from "./DisplayArticle/DisplayArticle";
 import DisplayTree from "./DisplayTree/DisplayTree";
-import "./Assets/Tree.png"
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
 
+import "./Assets/Tree.png"
 import './App.css';
 
 class App extends Component {
@@ -30,8 +32,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <img src={require('./Assets/Tree.png')}></img>
-        <h1>I am groot!</h1>
+        <Header />        
         <div>
           <UserInput name={"DOAJ Search String:"} />
           <UserInput name={"Set the Node:"} />
@@ -41,6 +42,7 @@ class App extends Component {
           <UserInput name={"Exact Phrase to Locate:"} />
           <DisplayArticle />
         </div>
+        <Footer />
 
         
       </div>
