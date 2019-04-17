@@ -77,10 +77,10 @@ class App extends Component {
 
   findThatArticle = (event) => {
     event.preventDefault();
-    const thisArticle = this.state.results.filter(article => article.bibjson.abstract && article.bibjson.abstract.includes(this.state.relevant)); // If the article has an abstract and that abstract includes state.phrase
+    const thisArticle = this.state.results.filter(article => article.bibjson.abstract && article.bibjson.abstract.includes(this.state.matchPhrase)); // If the article has an abstract and that abstract includes state.phrase
     if (thisArticle[0]) {
       this.setState({
-        relevantResult: {
+        matchingArticle: {
           title: thisArticle[0].bibjson.title ? thisArticle[0].bibjson.title : "Title not found.",
           link: thisArticle[0].bibjson.link[0].url ? thisArticle[0].bibjson.link[0].url : "Link not found.",
           year: thisArticle[0].bibjson.year ? thisArticle[0].bibjson.year : "Year not found.",
@@ -104,25 +104,34 @@ class App extends Component {
           <Header logo={require('./Assets/Tree.png')} />
           <div>
             <UserInput 
+            label={"Search String:"}
             name={"requestTerms"}
             onChange={this.handleInputChange}
             value={this.state.requestTerms}
             onClick={this.handleAPI}
             />
             <UserInput 
+            label={"Diagram Node:"}
             name={"node"}
-            onchange={this.handleInputChange}
+            onChange={this.handleInputChange}
             value={this.state.node} 
             />
-            <DisplayTree />
+            <DisplayTree 
+            treeData={this.state.treeData} 
+            node={this.state.node}
+            />
           </div>
           <div>
             <UserInput 
+            label={"Article Locator:"}
             name={"matchPhrase"}
             onChange={this.handleInputChange}
-            value={this.state.matchPhrase}             
+            value={this.state.matchPhrase} 
+            onClick={this.findThatArticle}            
             />
-            <DisplayArticle />
+            <DisplayArticle
+            article={this.state.matchingArticle}
+            />
           </div>
           <Footer year={"2019"} contributors={"Jacob Artz"} />
         </div>

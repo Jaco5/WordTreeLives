@@ -6,10 +6,10 @@ const userInput = (props) => {
     return (
         <form className="user-input">
             <label>
-                <p>{props.name}</p>
+                <p>{props.label}</p>
                 <input type="text" name={props.name} onChange={props.onChange} />
             </label>
-            <button type="submit" value={props.value} onClick={props.onClick}>Search</button>
+            <button type="submit" value={props.value} onClick={props.onClick}>Poof</button>
         </form>
     )
 };
