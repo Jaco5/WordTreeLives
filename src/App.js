@@ -5,8 +5,11 @@ import DisplayTree from "./DisplayTree/DisplayTree";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 
+import API from "./API/API.js"
+
 import "./Assets/Tree.png"
 import './App.css';
+
 
 class App extends Component {
 
@@ -20,16 +23,16 @@ class App extends Component {
 
     }
   }
-
-  APIsearch = () => { // The first step is to search doaj.org
-    // this.setState({ treeData: [] })
-    // API.searchAPI(this.state.phrase)
-    //   .then(async result => { // Use of ASYNC AWAIT is to deal with the time delay on setState, may be able to eliminate this by using MOBX
-    //     console.log("RESULT: ", result);
-    //     await this.setState({ results: result.data.results })
-    //     console.log("results: set")
-    //     this.createTreeData() // Here we call the method to create the treeData
-    //   }).catch(e => console.log(e));;
+  
+  doajAPI = () => { // The first step is to search doaj.org
+    this.setState({ treeData: [] }) // clear state to avoid mixing results
+    API.searchAPI(this.state.requestTerms)
+      .then(async result => { // Use of ASYNC AWAIT is to deal with the time delay on setState, may be able to eliminate this by using MOBX
+        console.log("RESULT: ", result);
+        await this.setState({ results: result.data.results })
+        console.log("results: set")
+        this.createTreeData() // Here we call the method to create the treeData
+      }).catch(e => console.log(e));;
   }
 
   createTreeData = () => {
@@ -41,7 +44,7 @@ class App extends Component {
         bigArray.push(singleArray); // Ah, push it.
       }
     }
-    console.log("big" + bigArray);
+    console.log("bigArray" + bigArray);
     console.log(this.state.results)
     this.state.results.map(result => { // ???? This was to work around a bug but now im not sure why the map is needed 
       this.setState({ treeData: bigArray });
@@ -63,8 +66,8 @@ class App extends Component {
 
   handleAPI = event => {
     event.preventDefault();
-    if (this.state.phrase) {
-      this.APIsearch(this.state.phrase);
+    if (this.state.requestTerms) {
+      this.doajAPI(this.state.requestTerms);
     };
   };
 
@@ -104,6 +107,7 @@ class App extends Component {
             name={"requestTerms"}
             onChange={this.handleInputChange}
             value={this.state.requestTerms}
+            onClick={this.handleAPI}
             />
             <UserInput 
             name={"node"}
@@ -116,7 +120,8 @@ class App extends Component {
             <UserInput 
             name={"matchPhrase"}
             onChange={this.handleInputChange}
-            value={this.state.matchPhrase}             />
+            value={this.state.matchPhrase}             
+            />
             <DisplayArticle />
           </div>
           <Footer year={"2019"} contributors={"Jacob Artz"} />

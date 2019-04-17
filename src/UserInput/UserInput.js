@@ -4,12 +4,12 @@ import './UserInput.css';
 
 const userInput = (props) => {
     return (
-        <form classname="user-input">
+        <form className="user-input">
             <label>
                 <p>{props.name}</p>
-                <input type="text" name="name" />
+                <input type="text" name={props.name} onChange={props.onChange} />
             </label>
-            <input type="submit" value="Submit" />
+            <button type="submit" value={props.value} onClick={props.onClick}>Search</button>
         </form>
     )
 };
