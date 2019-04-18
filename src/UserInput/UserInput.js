@@ -9,7 +9,12 @@ const userInput = (props) => {
                 <p>{props.label}</p>
                 <input type="text" name={props.name} onChange={props.onChange} />
             </label>
-            <button type="submit" value={props.value} onClick={props.onClick}>Poof</button>
+            {
+                (props.onClick)
+                ? <button type="submit" value={props.value} onClick={props.onClick}>Poof</button>
+                : ""
+            }
+            
         </form>
     )
 };

@@ -23,7 +23,7 @@ class App extends Component {
 
     }
   }
-  
+
   doajAPI = () => { // The first step is to search doaj.org
     this.setState({ treeData: [] }) // clear state to avoid mixing results
     API.searchAPI(this.state.requestTerms)
@@ -71,6 +71,13 @@ class App extends Component {
     };
   };
 
+  handleNodeSubmit = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    })
+  }
 
 
 
@@ -103,39 +110,41 @@ class App extends Component {
         <div className="app-container">
           <Header logo={require('./Assets/Tree.png')} />
           <div>
-            <UserInput 
-            label={"Search String:"}
-            name={"requestTerms"}
-            onChange={this.handleInputChange}
-            value={this.state.requestTerms}
-            onClick={this.handleAPI}
-            />
-            <UserInput 
-            label={"Diagram Node:"}
-            name={"node"}
-            onChange={this.handleInputChange}
-            value={this.state.node} 
-            />
-            <DisplayTree 
-            treeData={this.state.treeData} 
-            node={this.state.node}
+            <div className="input-div-one">
+              <UserInput
+                label={"Diagram Node:"}
+                name={"node"}
+                onChange={this.handleInputChange}
+                value={this.state.node}
+              />
+              <UserInput
+                label={"Search String:"}
+                name={"requestTerms"}
+                onChange={this.handleInputChange}
+                value={this.state.requestTerms}
+                onClick={this.handleAPI}
+              />
+            </div>
+            <DisplayTree
+              treeData={this.state.treeData}
+              node={this.state.node}
             />
           </div>
           <div>
-            <UserInput 
-            label={"Article Locator:"}
-            name={"matchPhrase"}
-            onChange={this.handleInputChange}
-            value={this.state.matchPhrase} 
-            onClick={this.findThatArticle}            
+            <UserInput
+              label={"Article Locator:"}
+              name={"matchPhrase"}
+              onChange={this.handleInputChange}
+              value={this.state.matchPhrase}
+              onClick={this.findThatArticle}
             />
             <DisplayArticle
-            article={this.state.matchingArticle}
+              article={this.state.matchingArticle}
             />
           </div>
           <Footer year={"2019"} contributors={"Jacob Artz"} />
         </div>
-      </div>
+      </div >
     );
   }
 }

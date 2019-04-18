@@ -1,14 +1,21 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
   
 }
+
+.input-div-one {
+  display: flex;
+  justify-content: center;
+  border: 1px solid blue;
+}
+
 
 .app-container {
   width: 90%;
   margin: auto;
-  
-
 }
+
+
 
 /* 
 @keyframes App-logo-spin {

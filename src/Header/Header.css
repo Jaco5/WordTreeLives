@@ -1,4 +1,15 @@
+
+.header-div {
+    display: flex;
+}
+
 .logo {
     border: 3px groove black;
     padding: 1rem 1rem 1rem 1rem;
+    margin-right: 2rem;
+    
+}
+
+.header-text-div {
+
 }
