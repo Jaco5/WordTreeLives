@@ -10,9 +10,9 @@ const displayArticle = (props) => {
                 <li>Title:{props.article.title}</li>
                 {/* <li>Author(s):{props.article.}</li> */}
                 <li>Journal/Publication:{props.article.journal}</li>
-                <li>Date Published:, {props.article.publisher},{props.article.year}</li>
-                <li>Subject(s){props.article.subject}</li>
-                <li>Abstract:{props.article.abstract}</li>
+                <li>Date Published: {props.article.publisher}{props.article.year}</li>
+                <li>Subjects: {props.article.subject}</li>
+                <li>Abstract: {props.article.abstract}</li>
             </ul>
             
         </div>

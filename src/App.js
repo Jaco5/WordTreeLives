@@ -111,34 +111,36 @@ class App extends Component {
           <Header logo={require('./Assets/Tree.png')} />
           <div>
             <div className="input-div-one">
-              <UserInput
-                label={"Diagram Node:"}
-                name={"node"}
-                onChange={this.handleInputChange}
-                value={this.state.node}
-              />
-              <UserInput
-                label={"Search String:"}
+              <UserInput 
+                label={"A. First, enter the search word or phrase here, don't mind the glitchy seeming pause for now:"}
                 name={"requestTerms"}
                 onChange={this.handleInputChange}
                 value={this.state.requestTerms}
                 onClick={this.handleAPI}
               />
+              <UserInput 
+                label={"B. Second, this is the node, the seed word from which the word tree will grow (This is cAsE sensitive):"}
+                name={"node"}
+                onChange={this.handleInputChange}
+                value={this.state.node}
+              />
+              
             </div>
+            <p>C. To browse the tree, use a combination of clicking on words, and changing the node. Once you find language that interests you, scroll down and follow the next instruction.</p>
             <DisplayTree
               treeData={this.state.treeData}
               node={this.state.node}
             />
           </div>
           <div>
-            <UserInput
-              label={"Article Locator:"}
+            <UserInput 
+              label={"D. Last, type a full sentence or unique phrase from the tree diagram to locate the article it originates from:"}
               name={"matchPhrase"}
               onChange={this.handleInputChange}
               value={this.state.matchPhrase}
               onClick={this.findThatArticle}
             />
-            <DisplayArticle
+            <DisplayArticle 
               article={this.state.matchingArticle}
             />
           </div>

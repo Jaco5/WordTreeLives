@@ -4,10 +4,10 @@ import './Header.css';
 const header = (props) => {
     return (
         <div className="header-div">
-            <img className="logo" src={props.logo}></img>
+            <img className="logo" src={props.logo} alt="Tree Logo"></img>
             <div className='header-text-div'>
                 <h1>"I am Groot!" -Groot</h1>
-                <p>This is where I I will write concise, easy to understand directions to let everyone know what this is and why it is useful. Lovely weather today, sun keeps dipping behind the clouds but it IS sunny, and it rained last night.</p>
+                <p>What does this app do? I can already search doaj.org. Why is it more efficient to sort through word spaghetti? This is more efficient because instead of inferring from keywords and titles, and then reading a full abstract to determine if its relevant, it allows you to search directly for language that you find relevant.</p>
             </div>
         </div>
     )

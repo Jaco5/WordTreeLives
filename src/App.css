@@ -5,10 +5,10 @@
 
 .input-div-one {
   display: flex;
-  justify-content: center;
-  border: 1px solid blue;
+  justify-content: space-between;
+  flex-direction: row;
+  /* border: 1px solid blue; */
 }
-
 
 .app-container {
   width: 90%;
