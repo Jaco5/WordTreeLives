@@ -116,7 +116,7 @@ class App extends Component {
           <div>
             <div className="input-div-one">
               <UserInput 
-                label={"A. First, enter the search word or phrase here, don't mind the glitchy seeming pause for now:"}
+                label={"A. First, enter the search word or phrase here:"}
                 name={"requestTerms"}
                 onChange={this.handleInputChange}
                 value={this.state.requestTerms}
