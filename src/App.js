@@ -16,6 +16,7 @@ class App extends Component {
   state = {
     results: undefined, // Initial search results from doaj.org
     treeData: undefined,  // Array of single index arrays of strings created from search result abstracts.
+    setNode: undefined,
     node: "",  // Node word of the word tree chart.
     requestTerms: "", // Search term for api to doaj.
     matchPhrase: "",  // The phrase to search your search results for.
@@ -100,7 +101,10 @@ class App extends Component {
       })
     }
   }
-
+  _setNode =(event)=> {
+    event.preventDefault();
+    this.setState({ setNode: this.state.node});
+  }
 
 
 
@@ -123,14 +127,15 @@ class App extends Component {
                 name={"node"}
                 onChange={this.handleInputChange}
                 value={this.state.node}
+                onClick={this._setNode}
               />
               
             </div>
-            <p>C. To browse the tree, use a combination of clicking on words, and changing the node. Once you find language that interests you, scroll down and follow the next instruction.</p>
+            <p>C. Now you can press the <b>Create Tree</b> button To browse the tree, use a combination of clicking on words, and changing the node. Once you find language that interests you, scroll down and follow the next instruction.</p>
             { (this.state.results !== undefined) ? <button name="createTreeData" onClick={this.createTreeData}>Create Tree</button> : null}
             <DisplayTree
               treeData={this.state.treeData}
-              node={this.state.node}
+              node={this.state.setNode}
             />
           </div>
           <div>

@@ -1,3 +1,17 @@
+
+
+
+
+
+
+###2nd revision###
+
+Not sure where to start.
+
+
+
+###first revision###
+
 1. Create component structures and layout.
 2. Review TreeData algorithm and REACT+GoogleCharts+NPM, review DOAJ.org API integration.
 3. Adapt functional parts of original project to new layout.
@@ -18,3 +32,5 @@ Nice to Have = Highlight in saved docs, article comparison (side by side?)
 - the user must set a value for node, node is the word that will be used as the center of the diagram, this must be one word
 - clicking on other words sets the node to that word
 - entering an exact phrase from the tree into the 'locate' input will retrieve the full article details
+
+
