@@ -14,8 +14,8 @@ import './App.css';
 class App extends Component {
 
   state = {
-    results: [], // Initial search results from doaj.org
-    treeData: [],  // Array of single index arrays of strings created from search result abstracts.
+    results: undefined, // Initial search results from doaj.org
+    treeData: undefined,  // Array of single index arrays of strings created from search result abstracts.
     node: "",  // Node word of the word tree chart.
     requestTerms: "", // Search term for api to doaj.
     matchPhrase: "",  // The phrase to search your search results for.
@@ -25,20 +25,20 @@ class App extends Component {
   }
 
   doajAPI = () => { // The first step is to search doaj.org
-    this.setState({ treeData: [] }) // clear state to avoid mixing results
+    this.setState({ treeData: undefined }) // clear state to avoid mixing results
     API.searchAPI(this.state.requestTerms)
-      .then(async result => { // Use of ASYNC AWAIT is to deal with the time delay on setState, may be able to eliminate this by using MOBX
+      .then( result => { // Use of ASYNC AWAIT is to deal with the time delay on setState, may be able to eliminate this by using MOBX
         console.log("RESULT: ", result);
-        await this.setState({ results: result.data.results })
+       this.setState({ results: result.data.results })
         console.log("results: set")
-        this.createTreeData() // Here we call the method to create the treeData
+        //this.createTreeData() // Here we call the method to create the treeData
       }).catch(e => console.log(e));;
   }
 
   createTreeData = () => {
     let bigArray = [] // To avoid mutating state.
     for (var i = 0; i < this.state.results.length; i++) { // For each result
-      if (this.state.results[i].bibjson.abstract && this.state.results[i].bibjson.abstract != ".") { // Many results have null or "." in their abstract key, don't include these.
+      if (this.state.results[i].bibjson.abstract && this.state.results[i].bibjson.abstract !== ".") { // Many results have null or "." in their abstract key, don't include these.
         let singleArray = [this.state.results[i].bibjson.abstract]; // Package the string in an array before pushing it.
         // console.log(singleArray);
         bigArray.push(singleArray); // Ah, push it.
@@ -127,6 +127,7 @@ class App extends Component {
               
             </div>
             <p>C. To browse the tree, use a combination of clicking on words, and changing the node. Once you find language that interests you, scroll down and follow the next instruction.</p>
+            { (this.state.results !== undefined) ? <button name="createTreeData" onClick={this.createTreeData}>Create Tree</button> : null}
             <DisplayTree
               treeData={this.state.treeData}
               node={this.state.node}

@@ -16,3 +16,32 @@ Preceding language on the left, the node word, and then language that follows th
 Ideally you will find language in the tree that sounds just like what you are looking for, if so, you type that exact phrase into the article search, and it will return the details on where to find the article. 
 
 This tool is limited to open access journals found on doaj.org, which contains close to 30,000,000 scholarly articles.
+
+
+
+// export default {
+//     searchCharacter: async function(character) {
+//       try {
+//         const response = await axios.get(
+//           "https://gateway.marvel.com:443/v1/public/characters?name=" +
+//             character +
+//             "&ts=" +
+//             timestamp +
+//             "&apikey=" +
+//             pubKey +
+//             "&hash=" +
+//             hash
+//         );
+  
+//         if (response.data.data.count === 0) {
+//           return console.log('no results')
+//         }
+  
+//         console.log(response.data.data.count)
+  
+//         return response;
+//       } catch (error) {
+//         console.log("error");
+//       }
+//     }
+//   };

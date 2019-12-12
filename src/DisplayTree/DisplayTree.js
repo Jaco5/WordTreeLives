@@ -6,6 +6,7 @@ import  './DisplayTree.css';
 let options = {};
 
 const displayTree = (props) => {
+    if (props.treeData !== undefined) {
     return (
          /* Need a ternary in here on treeData */
          <div className={"my-pretty-chart-container tree-div"}> 
@@ -26,7 +27,7 @@ const displayTree = (props) => {
              legendToggle
          />
      </div>
-    )
+    )} else return ( <p>placeholder</p>)
 };
 
 export default displayTree;
