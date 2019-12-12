@@ -6,7 +6,9 @@
 
 ###2nd revision###
 
-Not sure where to start.
+Removed need for async await by removing the call for createTreeData to a conditionally rendered 
+button. Fixed massive stack of errors in chart when typing new nodes by changing the input to the chart
+to be a separate state.
 
 
 
