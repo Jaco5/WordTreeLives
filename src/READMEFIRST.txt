@@ -6,9 +6,13 @@
 
 ###2nd revision###
 
+3. Check in more depth how the results are being made into tree data
+2. Paginate result trees so most relevent results arent cluttered with less relevant
+1. increase # of results from doaj and see how it affects the speed.
+
 Removed need for async await by removing the call for createTreeData to a conditionally rendered 
 button. Fixed massive stack of errors in chart when typing new nodes by changing the input to the chart
-to be a separate state.
+to be a separate state. Still feels kind of hacky.
 
 
 
