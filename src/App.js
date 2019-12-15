@@ -28,37 +28,30 @@ class App extends Component {
   doajAPI = () => { // The first step is to search doaj.org
     this.setState({ treeData: undefined }) // clear state to avoid mixing results
     API.searchAPI(this.state.requestTerms)
-      .then( result => { // Use of ASYNC AWAIT is to deal with the time delay on setState, may be able to eliminate this by using MOBX
+      .then(result => {
         console.log("RESULT: ", result);
-       this.setState({ results: result.data.results })
+        this.setState({ results: result.data.results })
         console.log("results: set")
-        //this.createTreeData() // Here we call the method to create the treeData
+
       }).catch(e => console.log(e));;
   }
 
   createTreeData = () => {
-    let bigArray = [] // To avoid mutating state.
-    for (var i = 0; i < this.state.results.length; i++) { // For each result
+    let bigArray = [];
+    for (var i = 0; i < this.state.results.length; i++) { 
       if (this.state.results[i].bibjson.abstract && this.state.results[i].bibjson.abstract !== ".") { // Many results have null or "." in their abstract key, don't include these.
         let singleArray = [this.state.results[i].bibjson.abstract]; // Package the string in an array before pushing it.
-        // console.log(singleArray);
-        bigArray.push(singleArray); // Ah, push it.
+        // console.log("singArr"+singleArray);
+        bigArray.push(singleArray);
       }
-    }
-    console.log("bigArray" + bigArray);
-    console.log(this.state.results)
-    this.state.results.map(result => { // ???? This was to work around a bug but now im not sure why the map is needed 
+      console.log("bigArray" + bigArray);
+      console.log(this.state.results)
       this.setState({ treeData: bigArray });
-    });
-
-    setTimeout(() => { //this is just a console log on a timer, I think its just a debugging tool possibly not needed now
-      console.log(this.state)
-    }, 5000);
-
-
+      
+    }
   }
 
-  handleInputChange = (event) => {
+  handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -72,13 +65,13 @@ class App extends Component {
     };
   };
 
-  handleNodeSubmit = (event) => {
-    event.preventDefault();
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    })
-  }
+  // handleNodeSubmit = (event) => {
+  //   event.preventDefault();
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   })
+  // }
 
 
 
@@ -101,9 +94,10 @@ class App extends Component {
       })
     }
   }
-  _setNode =(event)=> {
+  _setNode = (event) => {
     event.preventDefault();
-    this.setState({ setNode: this.state.node});
+    this.setState({ setNode: this.state.node });
+    console.log(this.state.treeData)
   }
 
 
@@ -115,38 +109,38 @@ class App extends Component {
           <Header logo={require('./Assets/Tree.png')} />
           <div>
             <div className="input-div-one">
-              <UserInput 
+              <UserInput
                 label={"A. First, enter the search word or phrase here:"}
                 name={"requestTerms"}
                 onChange={this.handleInputChange}
                 value={this.state.requestTerms}
                 onClick={this.handleAPI}
               />
-              <UserInput 
+              <UserInput
                 label={"B. Second, this is the node, the seed word from which the word tree will grow (This is cAsE sensitive):"}
                 name={"node"}
                 onChange={this.handleInputChange}
                 value={this.state.node}
                 onClick={this._setNode}
               />
-              
+
             </div>
             <p>C. Now you can press the <b>Create Tree</b> button To browse the tree, use a combination of clicking on words, and changing the node. Once you find language that interests you, scroll down and follow the next instruction.</p>
-            { (this.state.results !== undefined) ? <button name="createTreeData" onClick={this.createTreeData}>Create Tree</button> : null}
+            {(this.state.results !== undefined) ? <button name="createTreeData" onClick={this.createTreeData}>Create Tree</button> : null}
             <DisplayTree
               treeData={this.state.treeData}
               node={this.state.setNode}
             />
           </div>
           <div>
-            <UserInput 
+            <UserInput
               label={"D. Last, type a full sentence or unique phrase from the tree diagram to locate the article it originates from:"}
               name={"matchPhrase"}
               onChange={this.handleInputChange}
               value={this.state.matchPhrase}
               onClick={this.findThatArticle}
             />
-            <DisplayArticle 
+            <DisplayArticle
               article={this.state.matchingArticle}
             />
           </div>
