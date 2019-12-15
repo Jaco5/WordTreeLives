@@ -9,6 +9,7 @@ import API from "./API/API.js"
 
 import "./Assets/Tree.png"
 import './App.css';
+import userInput from './UserInput/UserInput';
 
 
 class App extends Component {
@@ -20,19 +21,17 @@ class App extends Component {
     node: "",  // Node word of the word tree chart.
     requestTerms: "", // Search term for api to doaj.
     matchPhrase: "",  // The phrase to search your search results for.
-    matchingArticle: { // The title and href of the article containing the phrase.
-
-    }
+    matchingArticle: {},
+    page: 1,
+    resPerPage: 25,
   }
 
   doajAPI = () => { // The first step is to search doaj.org
     this.setState({ treeData: undefined }) // clear state to avoid mixing results
-    API.searchAPI(this.state.requestTerms)
+    API.searchAPI(this.state.requestTerms, this.state.page, this.state.resPerPage) // pass in other params
       .then(result => {
         console.log("RESULT: ", result);
         this.setState({ results: result.data.results })
-        console.log("results: set")
-
       }).catch(e => console.log(e));;
   }
 
@@ -41,13 +40,9 @@ class App extends Component {
     for (var i = 0; i < this.state.results.length; i++) { 
       if (this.state.results[i].bibjson.abstract && this.state.results[i].bibjson.abstract !== ".") { // Many results have null or "." in their abstract key, don't include these.
         let singleArray = [this.state.results[i].bibjson.abstract]; // Package the string in an array before pushing it.
-        // console.log("singArr"+singleArray);
         bigArray.push(singleArray);
       }
-      console.log("bigArray" + bigArray);
-      console.log(this.state.results)
       this.setState({ treeData: bigArray });
-      
     }
   }
 
@@ -64,17 +59,6 @@ class App extends Component {
       this.doajAPI(this.state.requestTerms);
     };
   };
-
-  // handleNodeSubmit = (event) => {
-  //   event.preventDefault();
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     [name]: value
-  //   })
-  // }
-
-
-
 
   findThatArticle = (event) => {
     event.preventDefault();
@@ -94,13 +78,12 @@ class App extends Component {
       })
     }
   }
+
   _setNode = (event) => {
     event.preventDefault();
     this.setState({ setNode: this.state.node });
     console.log(this.state.treeData)
   }
-
-
 
   render() {
     return (
@@ -109,6 +92,7 @@ class App extends Component {
           <Header logo={require('./Assets/Tree.png')} />
           <div>
             <div className="input-div-one">
+              
               <UserInput
                 label={"A. First, enter the search word or phrase here:"}
                 name={"requestTerms"}
@@ -125,7 +109,7 @@ class App extends Component {
               />
 
             </div>
-            <p>C. Now you can press the <b>Create Tree</b> button To browse the tree, use a combination of clicking on words, and changing the node. Once you find language that interests you, scroll down and follow the next instruction.</p>
+            <p>C. Now you can press the <b>Create Tree</b> button. To browse the tree use a combination of clicking on words, and changing the node. Once you find language that interests you, scroll down and follow the next instruction.</p>
             {(this.state.results !== undefined) ? <button name="createTreeData" onClick={this.createTreeData}>Create Tree</button> : null}
             <DisplayTree
               treeData={this.state.treeData}

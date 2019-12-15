@@ -3,9 +3,10 @@ import { Chart } from "react-google-charts";
 
 import  './DisplayTree.css';
 
-let options = {};
+
 
 const displayTree = (props) => {
+    let options = {};
     if (props.treeData !== undefined) {
     return (
          /* Need a ternary in here on treeData */
