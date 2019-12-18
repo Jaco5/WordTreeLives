@@ -18,7 +18,7 @@ class App extends Component {
     results: undefined, // Initial search results from doaj.org
     treeData: undefined,  // Array of single index arrays of strings created from search result abstracts.
     setNode: undefined,
-    node: "",  // Node word of the word tree chart.
+    node: "a",  // Node word of the word tree chart.
     requestTerms: "", // Search term for api to doaj.
     matchPhrase: "",  // The phrase to search your search results for.
     matchingArticle: {},
@@ -94,15 +94,15 @@ class App extends Component {
             <div className="input-div-one">
               
               <UserInput
-                label={"A. First, enter the search word or phrase here:"}
-                name={"requestTerms"}
+                label="A. First, enter the search word or phrase for DOAJ.org here:"
+                name="requestTerms"
                 onChange={this.handleInputChange}
                 value={this.state.requestTerms}
                 onClick={this.handleAPI}
               />
               <UserInput
-                label={"B. Second, this is the node, the seed word from which the word tree will grow (This is cAsE sensitive):"}
-                name={"node"}
+                label="B. Second, this is the node, the seed word from which the word tree grows (This is cAsE sensitive):"
+                name="node"
                 onChange={this.handleInputChange}
                 value={this.state.node}
                 onClick={this._setNode}
@@ -118,8 +118,8 @@ class App extends Component {
           </div>
           <div>
             <UserInput
-              label={"D. Last, type a full sentence or unique phrase from the tree diagram to locate the article it originates from:"}
-              name={"matchPhrase"}
+              label="D. Last, type a full sentence or unique phrase from the tree diagram to locate the article it originates from:"
+              name="matchPhrase"
               onChange={this.handleInputChange}
               value={this.state.matchPhrase}
               onClick={this.findThatArticle}
