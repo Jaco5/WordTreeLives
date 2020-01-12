@@ -6,8 +6,9 @@ import  './DisplayTree.css';
 
 
 const displayTree = (props) => {
-    let options = {};
+    
     if (props.treeData !== undefined) {
+    let options = {};
     return (
          /* Need a ternary in here on treeData */
          <div className={"my-pretty-chart-container tree-div"}> 
