@@ -9,7 +9,7 @@ import API from "./API/API.js"
 
 import "./Assets/Tree.png"
 import './App.css';
-import userInput from './UserInput/UserInput';
+// import UserInput from './UserInput/UserInput';
 
 
 class App extends Component {
@@ -26,7 +26,7 @@ class App extends Component {
     resPerPage: 25,
   }
 
-  doajAPI = () => { // The first step is to search doaj.org
+  doajAPI = () => { //  to search doaj.org
     this.setState({ treeData: undefined }) // clear state to avoid mixing results
     API.searchAPI(this.state.requestTerms, this.state.page, this.state.resPerPage) // pass in other params
       .then(result => {
@@ -47,6 +47,7 @@ class App extends Component {
   }
 
   handleInputChange = event => {
+    event.preventDefault()
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -82,7 +83,6 @@ class App extends Component {
   _setNode = (event) => {
     event.preventDefault();
     this.setState({ setNode: this.state.node });
-    console.log(this.state.treeData)
   }
 
   render() {

@@ -19,29 +19,4 @@ This tool is limited to open access journals found on doaj.org, which contains c
 
 
 
-// export default {
-//     searchCharacter: async function(character) {
-//       try {
-//         const response = await axios.get(
-//           "https://gateway.marvel.com:443/v1/public/characters?name=" +
-//             character +
-//             "&ts=" +
-//             timestamp +
-//             "&apikey=" +
-//             pubKey +
-//             "&hash=" +
-//             hash
-//         );
-  
-//         if (response.data.data.count === 0) {
-//           return console.log('no results')
-//         }
-  
-//         console.log(response.data.data.count)
-  
-//         return response;
-//       } catch (error) {
-//         console.log("error");
-//       }
-//     }
-//   };
+* current issue is that it is redrawing the entire page every eystroke. Maybe this is solved with lifecycle methos.
